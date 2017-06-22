@@ -11,19 +11,19 @@
 <body>
 <!-- Dropdown Structure -->
 <!--<ul id="dropdown1" class="dropdown-content">-->
-  <!--<li><a href="#!">one</a></li>-->
-  <!--<li><a href="#!">two</a></li>-->
-  <!--<li class="divider"></li>-->
-  <!--<li><a href="#!">three</a></li>-->
-  <!--<li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>-->
+<!--<li><a href="#!">one</a></li>-->
+<!--<li><a href="#!">two</a></li>-->
+<!--<li class="divider"></li>-->
+<!--<li><a href="#!">three</a></li>-->
+<!--<li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>-->
 
 <!--</ul>-->
 <!--<ul id="dropdown2" class="dropdown-content">-->
-  <!--<li><a href="#!">one</a></li>-->
-  <!--<li><a href="#!">two</a></li>-->
-  <!--<li class="divider"></li>-->
-  <!--<li><a href="#!">three</a></li>-->
-  <!--<li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>-->
+<!--<li><a href="#!">one</a></li>-->
+<!--<li><a href="#!">two</a></li>-->
+<!--<li class="divider"></li>-->
+<!--<li><a href="#!">three</a></li>-->
+<!--<li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>-->
 
 <!--</ul>-->
 <header>
@@ -34,29 +34,42 @@
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <li><a href="#">Curses</a></li>
-          <li><a href="#">Sing Up</a></li>
-          <li><a href="#">Login</a></li>
-          <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Bos<i class="material-icons right">arrow_drop_down</i></a></li>
+          <% if !user_signed_in? %>
+              <li><%= link_to "Sing Up", new_user_registration_path %></li>
+              <li><%= link_to "Login", new_user_session_path %></li>
+          <% else %>
+              <li>
+                <a class="dropdown-button" href="#!" data-activates="dropdown1"><%= current_user.email %>
+                  <i class="material-icons right">arrow_drop_down</i></a>
+              </li>
+          <% end %>
 
           <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#!">My Profile</a></li>
+            <li><%= link_to "My Profile", edit_user_registration_path %></li>
             <li><a href="#!">Setting</a></li>
             <li class="divider"></li>
-            <li><a href="#!">Logout</a></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
           </ul>
 
           <ul id="dropdown2" class="dropdown-content">
-            <li><a href="#!">My Profile</a></li>
+            <li><%= link_to "My Profile", edit_user_registration_path %></li>
             <li><a href="#!">Setting</a></li>
             <li class="divider"></li>
-            <li><a href="#!">Logout</a></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
           </ul>
         </ul>
+
         <ul class="side-nav" id="mobile-demo">
           <li><a href="#">Curses</a></li>
-          <li><a href="#">Sing Up</a></li>
-          <li><a href="#">Login</a></li>
-          <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Bos<i class="material-icons right">arrow_drop_down</i></a></li>
+          <% if !user_signed_in? %>
+              <li><%= link_to "Sing Up", new_user_registration_path %></li>
+              <li><%= link_to "Login", new_user_session_path %></li>
+          <% else %>
+              <li>
+                <a class="dropdown-button" href="#!" data-activates="dropdown2"><%= current_user.email %>
+                  <i class="material-icons right">arrow_drop_down</i></a>
+              </li>
+          <% end %>
         </ul>
 
       </div>
@@ -66,6 +79,9 @@
 </header>
 <main>
   <div class="container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
     <%= yield %>
 
   </div>
@@ -98,7 +114,7 @@
 </footer>
 </body>
 <script>
-  $(".button-collapse").sideNav();
+    $(".button-collapse").sideNav();
 
 </script>
 </html>
