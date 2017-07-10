@@ -56,3 +56,5 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'pg'
 gem 'figaro'
+gem 'omniauth-facebook'
+
