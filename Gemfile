@@ -57,4 +57,7 @@ gem 'devise'
 gem 'pg'
 gem 'figaro'
 gem 'omniauth-facebook'
+gem 'annotate'
+gem 'toastr-rails'
+
 
