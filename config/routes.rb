@@ -16,5 +16,7 @@ Rails.application.routes.draw do
   end
     get "/my_courses", to:"courses#my_courses"
     post "/payment_notification", to:"courses#payment_notification"
+  # match '/payment_notification' => 'courses#payment_notification', :via => [:get, :post], :as => 'payment_notification'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
