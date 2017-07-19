@@ -6,7 +6,7 @@
         <div class="card">
           <div class="card-image waves-effect waves-block waves-light">
             <!--<%= image_tag course.image.url %>-->
-            <%= course.image.present? ? image_tag(course.image.url, height: 200, width: 200) : content_tag(:span, 'No Image')
+            <%= course.image.present? ? image_tag(course.image.url) : content_tag(:span, 'No Image')
             %>
 
           </div>

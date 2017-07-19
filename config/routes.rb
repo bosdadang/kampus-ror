@@ -9,8 +9,11 @@ Rails.application.routes.draw do
   root :to => "courses#index"
 
   resources :courses do
+    member do
+      get :subscrible
+    end
     resources :tasks, only:[:show]
   end
-
+    get "/my_courses", to:"courses#my_courses"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

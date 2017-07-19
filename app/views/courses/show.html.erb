@@ -2,19 +2,29 @@
   <div class="col m4">
     <div class="card z-depth-2">
       <div class="center">
-        <h1><%= number_to_currency(@course.price) %></h1>
+        <h1><%= current_user.has_course?(@course) ? "40%" : number_to_currency(@course.price) %></h1>
       </div>
       <div class="card-action center">
-        <button class="btn waves-effect waves-light green darken-3">
-          Take this
-        </button>
+        <% if current_user.has_course?(@course) %>
+            <%= link_to @course do %>
+                <button class="btn waves-effect waves-light green darken-3">
+                  View this
+                </button>
+            <% end %>
+        <% else %>
+            <%= link_to subscrible_course_path(@course) do %>
+                <button class="btn waves-effect waves-light green darken-3">
+                  Take this
+                </button>
+            <% end %>
+        <% end %>
       </div>
     </div>
   </div>
   <div class="col m8">
     <div class="card z-depth-2">
       <div class="card-image waves-effect waves-block waves-light">
-        <%= @course.image.present? ? image_tag(@course.image.url, height: 200, width: 200) : content_tag(:span, 'No Image')
+        <%= @course.image.present? ? image_tag(@course.image.url) : content_tag(:span, 'No Image')
         %>
       </div>
     </div>
@@ -30,8 +40,8 @@
                 <%= task.title %>
             <% end %>
         <% end %>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
