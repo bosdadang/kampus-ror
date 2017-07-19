@@ -66,7 +66,7 @@ end
 
 form do |f|
   f.inputs do
-    f.input :course_id, as: :select,  collection: Task.all, include_blank: false
+    f.input :course_id, as: :select,  collection: Course.all, include_blank: false
 
     f.input :title
     f.input :description
