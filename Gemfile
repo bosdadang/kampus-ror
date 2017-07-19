@@ -53,11 +53,18 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'materialize-sass'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'devise'
 gem 'pg'
 gem 'figaro'
+gem 'jquery-easing-rails'
 gem 'omniauth-facebook'
 gem 'annotate'
 gem 'toastr-rails'
+gem 'activeadmin', github: 'activeadmin'
+gem 'active_skin'
+gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
+
+
 
 
