@@ -22,11 +22,11 @@ class CoursesController < ApplicationController
           cmd: "_xclick",
           upload: 1,
           amount: @course.price,
-          notify_url: "http://0.0.0.0:3000/payment_notification",
-          item_name: @course.title,
+          notify_url: "https://mysterious-wave-51030.herokuapp.com/payment_notification",
+          item_name: @course.titl1e,
           item_number:@subscription.id,
           quantity:1,
-          return: "http://0.0.0.0:3000/my_courses"
+          return: "https://mysterious-wave-51030.herokuapp.commy_courses"
       }
       redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?"+ values.to_query
     end
