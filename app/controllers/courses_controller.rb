@@ -23,7 +23,7 @@ class CoursesController < ApplicationController
           upload: 1,
           amount: @course.price,
           notify_url: "https://mysterious-wave-51030.herokuapp.com/payment_notification",
-          item_name: @course.titl1e,
+          item_name: @course.title,
           item_number:@subscription.id,
           quantity:1,
           return: "https://mysterious-wave-51030.herokuapp.commy_courses"
@@ -37,7 +37,6 @@ class CoursesController < ApplicationController
   end
 
   def payment_notification
-    byebug
     params.permit!
     @subscription = Subscription.find(params[:item_number])
     @subscription.update_attributes({active: true})
