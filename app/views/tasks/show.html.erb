@@ -1,3 +1,9 @@
 <h1><%= @task.title %></h1>
 
-<%=@task.video_url %>
+<!--<iframe src='https://www.youtube.com/embed/lQrfI1W1Ftg?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>-->
+
+<iframe src='https://www.youtube.com/embed/<%= @task.source_youtube(@task.video_url) %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
+
+
+<h1><%= @task.description %></h1>
+
