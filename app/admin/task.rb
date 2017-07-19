@@ -66,7 +66,8 @@ end
 
 form do |f|
   f.inputs do
-    f.input :course_id
+    f.input :course_id, as: :select,  collection: Task.all, include_blank: false
+
     f.input :title
     f.input :description
     f.input :video_url
