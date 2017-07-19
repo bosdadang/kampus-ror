@@ -26,7 +26,7 @@ class CoursesController < ApplicationController
           item_name: @course.title,
           item_number:@subscription.id,
           quantity:1,
-          return: "https://mysterious-wave-51030.herokuapp.commy_courses"
+          return: "https://mysterious-wave-51030.herokuapp.com/my_courses"
       }
       redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?"+ values.to_query
     end
