@@ -36,4 +36,44 @@ ActiveAdmin.register Task do
 # end
 permit_params :course_id, :title, :description, :video_url, :image
 
+
+index do
+  column :course_id
+  column :title
+  column :description
+  column :video_url
+  column :image
+  actions
+end
+
+
+
+show do
+  attributes_table do
+
+    row :course_id
+    row :title
+    row :description
+    row :video_url
+    row :image do
+      # image_tag ad.image.url
+      task.image.present? ? image_tag(task.image.url, height: 200, width: 200) : content_tag(:span, 'No Image')
+    end
+  end
+  active_admin_comments
+end
+
+
+form do |f|
+  f.inputs do
+    f.input :course_id
+    f.input :title
+    f.input :description
+    f.input :video_url
+    f.input :image, hint: task.image.present? ? image_tag(task.image.url, height: 200, width: 200) : content_tag(:span, 'No Image')
+
+  end
+  f.actions
+end
+
 end

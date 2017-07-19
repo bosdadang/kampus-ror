@@ -14,6 +14,15 @@ ActiveAdmin.register Course do
 
   permit_params :title, :description, :price, :status, :image
 
+  index do
+    column :title
+    column :description
+    column :price
+    column :status
+    column :image
+    actions
+  end
+
   show do
     attributes_table do
 
