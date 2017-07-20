@@ -14,7 +14,6 @@
           </div>
           </div>
 
-
       <% else %>
           <div class="center">
             <h1><%= current_user.has_course?(@course) ? "40%" : number_to_currency(@course.price) %></h1>
@@ -52,9 +51,18 @@
     <div class="collection">
 
       <% @taks.each do |task| %>
-          <%= link_to [@course, task], class: "collection-item" do %>
-              <%= task.title %>
+          <% if can? :read, task %>
+              <%= link_to [@course, task], class: "collection-item" do %>
+                  <%= task.title %>
+              <% end %>
+
+          <% else %>
+              <%= link_to '#', class: "collection-item" do %>
+
+                  <%= task.title %>
+              <% end %>
           <% end %>
+
       <% end %>
     </div>
   </div>
