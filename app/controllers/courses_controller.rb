@@ -14,6 +14,9 @@ class CoursesController < ApplicationController
     @course = Course.friendly.find(params[:id])
 
     @subscription = Subscription.find_or_create_by(user: current_user, course_id: @course.id)
+    puts(@subscription.id)
+    puts(@course.id)
+    puts('hahahah')
     if @subscription.active?
       redirect_to my_courses_path
     else
@@ -39,6 +42,7 @@ class CoursesController < ApplicationController
   def payment_notification
     params.permit!
     status = params[:payment_status]
+
     if status == "Completed"
       @subscription = Subscription.find(params[:item_number])
       puts @subscription.active
