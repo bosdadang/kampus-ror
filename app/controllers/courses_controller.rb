@@ -44,7 +44,7 @@ class CoursesController < ApplicationController
     status = params[:payment_status]
 
     if status == "Completed"
-      @subscription = Subscription.find(@subscription)
+      @subscription = Subscription.find(@subscription.id)
       puts @subscription.active
       @subscription.update_attributes({active: true})
       respond_to do |f|
