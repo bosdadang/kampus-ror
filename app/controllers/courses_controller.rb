@@ -14,6 +14,7 @@ class CoursesController < ApplicationController
     @course = Course.friendly.find(params[:id])
 
     @subscription = Subscription.find_or_create_by(user: current_user, course_id: @course.id)
+    puts(@subscription.id )
     if @subscription.active?
       redirect_to my_courses_path
     else
@@ -24,7 +25,7 @@ class CoursesController < ApplicationController
           amount: @course.price,
           notify_url: "https://mysterious-wave-51030.herokuapp.com/payment_notification",
           item_name: @course.title,
-          item_number: @subscription.id,
+          item_number: 23,
           quantity: 1,
           return: "https://mysterious-wave-51030.herokuapp.com/my_courses"
       }
