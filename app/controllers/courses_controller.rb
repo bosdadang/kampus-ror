@@ -12,6 +12,7 @@ class CoursesController < ApplicationController
 
   def subscrible
     @course = Course.friendly.find(params[:id])
+    course = Course.friendly.find(params[:course_id])
 
     @subscription = Subscription.find_or_create_by(user: current_user, course_id: @course.id)
     puts(@subscription.id)
@@ -44,13 +45,14 @@ class CoursesController < ApplicationController
     status = params[:payment_status]
 
     if status == "Completed"
-      @subscription = Subscription.find(34)
+      @subscription = Subscription.find(@subscription.id)
+
       puts @subscription.active
       @subscription.update_attributes({active: true})
-      respond_to do |f|
-        f.html {render text: "ok"}
-      end
+
     end
+    render nothing: true
+
   end
 
 end
