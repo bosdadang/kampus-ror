@@ -15,6 +15,7 @@ class CoursesController < ApplicationController
 
     @subscription = Subscription.find_or_create_by(user: current_user, course_id: @course.id)
     puts(@subscription.id )
+    puts('yyyy')
     if @subscription.active?
       redirect_to my_courses_path
     else
