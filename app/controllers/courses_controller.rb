@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  protect_from_forgery except: [:notify_url]
+  protect_from_forgery except: [:notify_url, :payment_notification]
 
   def index
     @courses = Course.all
