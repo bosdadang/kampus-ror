@@ -13,6 +13,10 @@
 #
 
 class Course < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
+
   has_many :tasks, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
 
