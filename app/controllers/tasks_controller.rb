@@ -5,6 +5,6 @@ class TasksController < ApplicationController
     course = Course.friendly.find(params[:course_id])
     puts params
     @tasks = course.tasks
-    @task = @tasks.friendly.find(params[:id])
+    @task = @tasks.find(params[:id])
   end
 end
