@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  protect_from_forgery except: [:notify_url, :payment_notification]
+  protect_from_forgery except: [:payment_notification]
 
   def index
     @courses = Course.all
@@ -40,6 +40,7 @@ class CoursesController < ApplicationController
     params.permit!
     status = params[:payment_status]
     if status == "Completed"
+      puts('hahaha')
       @subscription = Subscription.find(params[:item_number])
       puts @subscription.active
       @subscription.update_attributes({active: true})
