@@ -37,6 +37,8 @@ class CoursesController < ApplicationController
   end
 
   def payment_notification
+    puts('hahaheweqwea')
+
     params.permit!
     status = params[:payment_status]
     if status == "Completed"
