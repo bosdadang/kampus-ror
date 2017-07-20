@@ -38,10 +38,13 @@ class CoursesController < ApplicationController
 
   def payment_notification
     params.permit!
-    @subscription = Subscription.find(params[:item_number])
-    @subscription.update_attributes({active: true})
-    respond_to do |f|
-      f.html {render text: "ok"}
+    status = params[:payment_status]
+    if status == "Completed"
+      @subscription = Subscription.find(params[:item_number])
+      @subscription.update_attributes({active: true})
+      respond_to do |f|
+        f.html {render text: "ok"}
+      end
     end
   end
 
