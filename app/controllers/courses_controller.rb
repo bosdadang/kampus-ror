@@ -37,12 +37,9 @@ class CoursesController < ApplicationController
   end
 
   def payment_notification
-    puts('hahaheweqwea')
-
     params.permit!
     status = params[:payment_status]
     if status == "Completed"
-      puts('hahaha')
       @subscription = Subscription.find(params[:item_number])
       puts @subscription.active
       @subscription.update_attributes({active: true})
