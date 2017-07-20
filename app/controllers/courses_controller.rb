@@ -6,14 +6,14 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find(params[:id])
+    @course = Course.friendly.find(params[:id])
     @taks = @course.tasks
   end
 
   def subscrible
-    @course = Course.find(params[:id])
+    @course = Course.friendly.find(params[:id])
 
-    @subscription = Subscription.find_or_create_by(user: current_user, course_id: params[:id])
+    @subscription = Subscription.find_or_create_by(user: current_user, course_id: @course.id )
     if @subscription.active?
       redirect_to my_courses_path
     else
@@ -24,8 +24,8 @@ class CoursesController < ApplicationController
           amount: @course.price,
           notify_url: "https://mysterious-wave-51030.herokuapp.com/payment_notification",
           item_name: @course.title,
-          item_number: @subscription.id,
-          quantity: 1,
+          item_number:@subscription.id,
+          quantity:1,
           return: "https://mysterious-wave-51030.herokuapp.com/my_courses"
       }
       redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?"+ values.to_query
@@ -40,8 +40,9 @@ class CoursesController < ApplicationController
     params.permit!
     @subscription = Subscription.find(params[:item_number])
     @subscription.update_attributes({active: true})
-    render nothing: true
-
+    respond_to do |f|
+      f.html {render text: "ok"}
+    end
   end
 
 end
