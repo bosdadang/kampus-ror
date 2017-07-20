@@ -12,8 +12,6 @@ class CoursesController < ApplicationController
 
   def subscrible
     @course = Course.friendly.find(params[:id])
-    course = Course.friendly.find(params[:course_id])
-
     @subscription = Subscription.find_or_create_by(user: current_user, course_id: @course.id)
     puts(@subscription.id)
     puts(@course.id)
