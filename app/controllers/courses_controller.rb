@@ -6,27 +6,13 @@ class CoursesController < ApplicationController
   end
 
   def show
-<<<<<<< HEAD
     @course = Course.friendly(params[:id])
-=======
-    @course = Course.friendly.find(params[:id])
->>>>>>> master
     @taks = @course.tasks
   end
 
   def subscrible
-<<<<<<< HEAD
-    @course = Course.friendly
-    (params[:id])
-
+    @course = Course.friendly(params[:id])
     @subscription = Subscription.find_or_create_by(user: current_user, course_id: params[:id])
-=======
-    @course = Course.friendly.find(params[:id])
-    @subscription = Subscription.find_or_create_by(user: current_user, course_id: @course.id)
-    puts(@subscription.id)
-    puts(@course.id)
-    puts('hahahah')
->>>>>>> master
     if @subscription.active?
       redirect_to my_courses_path
     else
