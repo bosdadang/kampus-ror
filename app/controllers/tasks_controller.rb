@@ -2,7 +2,8 @@ class TasksController < ApplicationController
   load_and_authorize_resource
 
   def show
-    course = Course.find(params[:course_id])
+    course = Course.friendly.find(params[:course_id])
+    puts params
     @tasks = course.tasks
     @task = @tasks.find(params[:id])
   end

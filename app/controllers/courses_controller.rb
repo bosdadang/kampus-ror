@@ -6,15 +6,27 @@ class CoursesController < ApplicationController
   end
 
   def show
+<<<<<<< HEAD
     @course = Course.friendly(params[:id])
+=======
+    @course = Course.friendly.find(params[:id])
+>>>>>>> master
     @taks = @course.tasks
   end
 
   def subscrible
+<<<<<<< HEAD
     @course = Course.friendly
     (params[:id])
 
     @subscription = Subscription.find_or_create_by(user: current_user, course_id: params[:id])
+=======
+    @course = Course.friendly.find(params[:id])
+    @subscription = Subscription.find_or_create_by(user: current_user, course_id: @course.id)
+    puts(@subscription.id)
+    puts(@course.id)
+    puts('hahahah')
+>>>>>>> master
     if @subscription.active?
       redirect_to my_courses_path
     else
@@ -25,7 +37,7 @@ class CoursesController < ApplicationController
           amount: @course.price,
           notify_url: "https://mysterious-wave-51030.herokuapp.com/payment_notification",
           item_name: @course.title,
-          item_number: @subscription.id,
+          item_number: 34,
           quantity: 1,
           return: "https://mysterious-wave-51030.herokuapp.com/my_courses"
       }
@@ -39,8 +51,17 @@ class CoursesController < ApplicationController
 
   def payment_notification
     params.permit!
-    @subscription = Subscription.find(params[:item_number])
-    @subscription.update_attributes({active: true})
+    status = params[:payment_status]
+
+    if status == "Completed"
+      puts(@subscription)
+
+      @subscription = Subscription.find(@subscription.id)
+
+      puts @subscription.active
+      @subscription.update_attributes({active: true})
+
+    end
     render nothing: true
 
   end
