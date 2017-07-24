@@ -22,7 +22,7 @@ class CoursesController < ApplicationController
           upload: 1,
           amount: @course.price,
           notify_url: "https://mysterious-wave-51030.herokuapp.com/payment_notification",
-          item_name: @course.title,
+          item_name: @subscription.id,
           item_number: 34,
           quantity: 1,
           return: "https://mysterious-wave-51030.herokuapp.com/my_courses"
