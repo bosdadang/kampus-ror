@@ -41,7 +41,7 @@ class CoursesController < ApplicationController
 
     if status == "Completed"
 
-      @subscription = Subscription.find(@subscription.id)
+      @subscription = Subscription.find(item_number)
 
       puts @subscription.active
       @subscription.update_attributes({active: true})
