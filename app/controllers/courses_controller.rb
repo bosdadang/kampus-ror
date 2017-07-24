@@ -22,8 +22,8 @@ class CoursesController < ApplicationController
           upload: 1,
           amount: @course.price,
           notify_url: "https://mysterious-wave-51030.herokuapp.com/payment_notification",
-          item_name: @subscription.id,
-          item_number: 34,
+          item_name: @course.price,
+          item_number: @subscription.id,
           quantity: 1,
           return: "https://mysterious-wave-51030.herokuapp.com/my_courses"
       }
@@ -40,7 +40,6 @@ class CoursesController < ApplicationController
     status = params[:payment_status]
 
     if status == "Completed"
-      puts(@subscription)
 
       @subscription = Subscription.find(@subscription.id)
 
