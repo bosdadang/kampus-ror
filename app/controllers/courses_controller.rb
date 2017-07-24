@@ -12,7 +12,7 @@ class CoursesController < ApplicationController
 
   def subscrible
     @course = Course.friendly(params[:id])
-    @subscription = Subscription.find_or_create_by(user: current_user, course_id: params[:id])
+    @subscription = Subscription.find_or_create_by(user: current_user, course_id: @course.id)
     if @subscription.active?
       redirect_to my_courses_path
     else
